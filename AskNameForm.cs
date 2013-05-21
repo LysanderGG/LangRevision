@@ -11,26 +11,32 @@ namespace LangRevision
 {
     public partial class AskNameForm : Form
     {
-        private Form returnForm;
 
         public AskNameForm() {
             InitializeComponent();
-        }
-
-        public AskNameForm(Form _returnForm) {
-            InitializeComponent();
-            returnForm = _returnForm;
         }
 
         private void AskNameForm_Load(object sender, EventArgs e) {
 
         }
 
+        /// <summary>
+        /// On Click, creates a new lang file
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button_Click(object sender, EventArgs e) {
-            if(String.IsNullOrEmpty(textBox.Text)) {
-                MessageBox.Show("Please enter something");
+            String name = textBox.Text;
+            if(String.IsNullOrEmpty(name)) {
+                MessageBox.Show("Please enter something.");
             } else {
-
+                // Check if the name is more than just spaces
+                name = name.Trim();
+                if(name.Length == 0) {
+                    MessageBox.Show("Please enter something else than spaces.");
+                } else {
+                    // Check if a file already exists with this name
+                }
             }
         }
     }
