@@ -7,6 +7,6 @@ namespace LangRevision
 {
     static class Utils
     {
-        static String LangFilesDirectory = ".LangFiles";
+        public static String LangFilesDirectory = ".LangFiles";
     }
 }
