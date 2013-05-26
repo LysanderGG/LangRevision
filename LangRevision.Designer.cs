@@ -35,6 +35,7 @@
             this.menuSave = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripSeparator();
             this.menuQuit = new System.Windows.Forms.ToolStripMenuItem();
+            this.recentlyOpenedFileslabel = new System.Windows.Forms.Label();
             this.menu.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -68,7 +69,7 @@
             // 
             this.menuNew.Name = "menuNew";
             this.menuNew.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.N)));
-            this.menuNew.Size = new System.Drawing.Size(152, 22);
+            this.menuNew.Size = new System.Drawing.Size(146, 22);
             this.menuNew.Text = "&New";
             this.menuNew.Click += new System.EventHandler(this.menuNew_Click);
             // 
@@ -76,7 +77,7 @@
             // 
             this.menuOpen.Name = "menuOpen";
             this.menuOpen.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.O)));
-            this.menuOpen.Size = new System.Drawing.Size(152, 22);
+            this.menuOpen.Size = new System.Drawing.Size(146, 22);
             this.menuOpen.Text = "&Open";
             this.menuOpen.Click += new System.EventHandler(this.menuOpen_Click);
             // 
@@ -84,29 +85,39 @@
             // 
             this.menuSave.Name = "menuSave";
             this.menuSave.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.S)));
-            this.menuSave.Size = new System.Drawing.Size(152, 22);
+            this.menuSave.Size = new System.Drawing.Size(146, 22);
             this.menuSave.Text = "&Save";
             this.menuSave.Click += new System.EventHandler(this.menuSave_Click);
             // 
             // toolStripMenuItem2
             // 
             this.toolStripMenuItem2.Name = "toolStripMenuItem2";
-            this.toolStripMenuItem2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(143, 6);
             this.toolStripMenuItem2.Click += new System.EventHandler(this.toolStripMenuItem2_Click);
             // 
             // menuQuit
             // 
             this.menuQuit.Name = "menuQuit";
             this.menuQuit.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.Q)));
-            this.menuQuit.Size = new System.Drawing.Size(152, 22);
+            this.menuQuit.Size = new System.Drawing.Size(146, 22);
             this.menuQuit.Text = "&Quit";
             this.menuQuit.Click += new System.EventHandler(this.menuQuit_Click);
+            // 
+            // recentlyOpenedFileslabel
+            // 
+            this.recentlyOpenedFileslabel.AutoSize = true;
+            this.recentlyOpenedFileslabel.Location = new System.Drawing.Point(13, 28);
+            this.recentlyOpenedFileslabel.Name = "recentlyOpenedFileslabel";
+            this.recentlyOpenedFileslabel.Size = new System.Drawing.Size(114, 13);
+            this.recentlyOpenedFileslabel.TabIndex = 1;
+            this.recentlyOpenedFileslabel.Text = "Recently Opened Files";
             // 
             // LangRevision
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(730, 323);
+            this.Controls.Add(this.recentlyOpenedFileslabel);
             this.Controls.Add(this.menu);
             this.MainMenuStrip = this.menu;
             this.Name = "LangRevision";
@@ -128,6 +139,7 @@
         private System.Windows.Forms.ToolStripMenuItem menuSave;
         private System.Windows.Forms.ToolStripMenuItem menuQuit;
         private System.Windows.Forms.ToolStripSeparator toolStripMenuItem2;
+        private System.Windows.Forms.Label recentlyOpenedFileslabel;
 
     }
 }
