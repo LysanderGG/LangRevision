@@ -26,37 +26,12 @@ namespace LangRevision
         /*
          * Constructors
          */
-
         public LangRevision() {
             InitializeComponent();
-            
-            /*
-             * Create a link for the MAX_LINKS last opened files
-             * On click, sets the file path and Open a new form to select the translation mod
-             */
+            InitializeDirectory();
+            InitializeLinks();
 
-            String[] filePaths = Directory.GetFiles(Utils.LangFilesDirectory);
-            // If MAX_LINKS or less are in the directory, links all of them
-            if(filePaths.Length <= MAX_LINKS) {
-                int i = 0;
-                foreach(String filePath in filePaths) {
-                    LinkLabel l = new LinkLabel();
-                    l.Text = filePath.Remove(0, Utils.LangFilesDirectory.Length + 1);
-                    l.MouseClick += delegate(object _sender, MouseEventArgs _e) {
-                        m_langFilePath = filePath;
-                        OpenLangFileModSelection();
-                    };
-                    l.Location = new Point(this.recentlyOpenedFileslabel.Location.X + 10, this.recentlyOpenedFileslabel.Location.Y + this.recentlyOpenedFileslabel.Height + 14 * i++);
-                    l.AutoSize = true;
-                    this.Controls.Add(l);
-                }
-            }
-            // Else links the most recents
-            else {
-                // TODO : recent opened files file
-            }
-
-            new LinkLabel();
+            //new LinkLabel();
         }
 
         /*
@@ -106,6 +81,11 @@ namespace LangRevision
 
         }
 
+        private void menuReload_Click(object sender, EventArgs e) {
+            this.RemoveAllLinks();
+            this.InitializeLinks();
+        }
+
         /// <summary>
         /// Create and Show a ModSelection form.
         /// This new form allows the user to select the Translation Mod he wants to use.
@@ -120,7 +100,6 @@ namespace LangRevision
         private void ModSelectionFormClosedEventHandler(object sender, FormClosedEventArgs e) {
             if(m_langFilePath != null) {
                 OpenLangFile(m_langFilePath);
-
             } else {
                 throw new Exception("The LangFile Path should have been set before.");
             }
@@ -132,6 +111,54 @@ namespace LangRevision
         private void OpenLangFile(String _path) {
             // TODO
         }
+
+        private void InitializeLinks() {
+            // If possible link all files
+            // Else links the most recents
+            if(!TryAddAllLinks(Utils.LangFilesDirectory)) {
+                // TODO : recent opened files file
+            }
+        }
         
+        private void InitializeDirectory() {
+            if(!Directory.Exists(Utils.LangFilesDirectory)) {
+                Directory.CreateDirectory(Utils.LangFilesDirectory);
+            }
+        }
+
+        /// <summary>
+        /// Creates a link for the MAX_LINKS last opened files
+        /// On click, sets the file path and Open a new form to select the translation mod
+        /// </summary>
+        /// <param name="_path">Path ofthe folder.</param>
+        /// <returns>True if it was possible to add them all. False otherwise.</returns>
+        private bool TryAddAllLinks(String _path) {
+            String[] filePaths = Directory.GetFiles(Utils.LangFilesDirectory);
+            if(filePaths.Length <= MAX_LINKS) {
+                int i = 0;
+                foreach(String filePath in filePaths) {
+                    LinkLabel label = new LinkLabel();
+                    label.Text = filePath.Remove(0, Utils.LangFilesDirectory.Length + 1);
+                    label.MouseClick += delegate(object _sender, MouseEventArgs _e) {
+                        m_langFilePath = filePath;
+                        OpenLangFileModSelection();
+                    };
+                    label.Location = new Point(this.recentlyOpenedFileslabel.Location.X + 10, this.recentlyOpenedFileslabel.Location.Y + this.recentlyOpenedFileslabel.Height + 14 * i++);
+                    label.AutoSize = true;
+                    this.Controls.Add(label);
+                }
+                return true;
+            }
+            return false;
+        }
+
+        private void RemoveAllLinks() {
+            foreach(Control c in this.Controls) {
+                if(c is LinkLabel) {
+                    this.Controls.Remove(c);
+                }
+            }
+        }
+
     }
 }
