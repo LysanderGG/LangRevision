@@ -19,7 +19,8 @@ namespace LangRevision
         }
 
         private void AskNameForm_Load(object sender, EventArgs e) {
-
+            this.KeyPreview = true;
+            this.KeyDown += new KeyEventHandler(this.AskNameForm_KeyDown);
         }
 
         /// <summary>
@@ -45,6 +46,12 @@ namespace LangRevision
                     this.Close();
                 }
 
+            }
+        }
+
+        private void AskNameForm_KeyDown(object sender, KeyEventArgs e) {
+            if(e.KeyCode == Keys.Enter) {
+                this.button_Click(sender, e);
             }
         }
     }
