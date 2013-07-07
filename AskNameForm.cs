@@ -37,11 +37,11 @@ namespace LangRevision
                     Directory.CreateDirectory(Utils.LangFilesDirectory);
                 }
 
-                if(FilesManager.ExistsFileInDirectory(Utils.LangFilesDirectory, name+".txt")) {
+                if(FilesManager.ExistsFileInDirectory(Utils.LangFilesDirectory, name + "." + Utils.LangFilesExtension)) {
                     MessageBox.Show("This name is already used.");
                     textBox.Clear();
                 } else {
-                    StreamWriter sw = File.CreateText(Utils.LangFilesDirectory + "/" + name + ".txt");
+                    StreamWriter sw = File.CreateText(Utils.LangFilesDirectory + "/" + name + "." + Utils.LangFilesExtension);
                     this.Close();
                 }
 
